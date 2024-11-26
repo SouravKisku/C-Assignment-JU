@@ -1,0 +1,22 @@
+Create new repo
+copy repo link
+
+open local files folder 
+open cmd in that folder 
+
+git init
+
+--> git status
+
+git add .
+
+git commit -m "message"
+
+git remote add origin repo_link
+
+git push -u -f origin master
+
+
+//in case of downloading files locally
+
+git pull origin
