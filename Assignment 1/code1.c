@@ -12,7 +12,7 @@ int main() {
     printf("Size of long long: %lu byte(s)\n", sizeof(long long));
     printf("Size of short: %lu byte(s)\n", sizeof(short));
     printf("Size of unsigned int: %lu byte(s)\n", sizeof(unsigned int));
-    printf("Size of void*: %lu byte(s)\n", sizeof(void*)); // Pointer size
+    printf("Size of void*: %lu byte(s)\n", sizeof(void*)); 
 
     return 0;
 }
