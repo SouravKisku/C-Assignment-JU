@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 
+// Function to compute GCD using Euclid's Algorithm
 int gcdEuclid(int a, int b) {
     while (b != 0) {
         int temp = b;
@@ -11,11 +12,12 @@ int gcdEuclid(int a, int b) {
     return a;
 }
 
+// Function to compute the GCD using Prime Factorization
 int gcdFactorization(int a, int b) {
     int gcd = 1;
-    int i;
-    
-    for (i = 2; i <= a && i <= b; i++) {
+
+    // Iterate through possible factors
+    for (int i = 2; i <= (a < b ? a : b); i++) {
         while (a % i == 0 && b % i == 0) {
             gcd *= i;
             a /= i;
@@ -26,14 +28,19 @@ int gcdFactorization(int a, int b) {
 }
 
 int main() {
-    int a, b;
-    
-    printf("Enter two numbers: ");
-    scanf("%d %d", &a, &b);
-    
-    printf("GCD of %d and %d using Euclid's Algorithm is: %d\n", a, b, gcdEuclid(a, b));
-    
-    printf("GCD of %d and %d using Factorization Method is: %d\n", a, b, gcdFactorization(a, b));
-    
+    int num1, num2;
+
+    // Input two numbers
+    printf("Enter two positive integers: ");
+    scanf("%d %d", &num1, &num2);
+
+    // Compute GCD using Euclid's Algorithm
+    int gcd1 = gcdEuclid(num1, num2);
+    printf("GCD (Euclid's Algorithm): %d\n", gcd1);
+
+    // Compute GCD using Prime Factorization
+    int gcd2 = gcdFactorization(num1, num2);
+    printf("GCD (Prime Factorization): %d\n", gcd2);
+
     return 0;
 }
