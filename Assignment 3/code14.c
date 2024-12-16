@@ -1,5 +1,6 @@
 // WAP to take one 2-D array, find the transpose of  it, finally print the multiplied value of the matrix with its transpose.
-
+//Code14 is still showing Error
+//To be fixed
 #include <stdio.h>
 #include <stdlib.h>
 
