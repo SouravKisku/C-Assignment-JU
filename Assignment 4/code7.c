@@ -1,94 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX 10  // Maximum size for the arrays
-
-// Function to read a matrix
-void readMatrix(int matrix[MAX][MAX], int rows, int cols) {
-    printf("Enter the elements of the matrix (%dx%d):\n", rows, cols);
+void sort_array(int arr[][3], int rows, int cols) {
     for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            scanf("%d", &matrix[i][j]);
+        for (int j = 0; j < cols - 1; j++) {
+            for (int k = 0; k < cols - j - 1; k++) {
+                if (arr[i][k] > arr[i][k + 1]) {
+                    int temp = arr[i][k];
+                    arr[i][k] = arr[i][k + 1];
+                    arr[i][k + 1] = temp;
+                }
+            }
         }
     }
 }
 
-// Function to sort the matrix in ascending order (by converting it to a 1-D array)
-void sortMatrix(int matrix[MAX][MAX], int rows, int cols) {
-    int temp[MAX * MAX];
-    int k = 0;
+void sum_and_sort_arrays(int arr1[][3], int arr2[][3], int result[][3], int rows, int cols) {
+    // Sort both input arrays
+    sort_array(arr1, rows, cols);
+    sort_array(arr2, rows, cols);
 
-    // Flatten the matrix into a 1-D array
+    // Calculate the sum of corresponding elements and store in the result array
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            temp[k++] = matrix[i][j];
+            result[i][j] = arr1[i][j] + arr2[i][j];
         }
     }
 
-    // Sort the 1-D array
-    qsort(temp, k, sizeof(int), (int (*)(const void *, const void *))compare);
-
-    // Refill the matrix with sorted values
-    k = 0;
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            matrix[i][j] = temp[k++];
-        }
-    }
-}
-
-// Comparison function for qsort (ascending order)
-int compare(const void *a, const void *b) {
-    return (*(int *)a - *(int *)b);
-}
-
-// Function to sum two matrices and store the result in a third matrix
-void sumMatrices(int mat1[MAX][MAX], int mat2[MAX][MAX], int result[MAX][MAX], int rows, int cols) {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            result[i][j] = mat1[i][j] + mat2[i][j];
-        }
-    }
-}
-
-// Function to print a matrix
-void printMatrix(int matrix[MAX][MAX], int rows, int cols) {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            printf("%d ", matrix[i][j]);
-        }
-        printf("\n");
-    }
+    // Sort the result array
+    sort_array(result, rows, cols);
 }
 
 int main() {
-    int rows, cols;
-    int matrix1[MAX][MAX], matrix2[MAX][MAX], result[MAX][MAX];
+    int arr1[3][3] = {{3, 1, 4}, {2, 5, 6}, {7, 8, 9}};
+    int arr2[3][3] = {{10, 11, 12}, {13, 14, 15}, {16, 17, 18}};
+    int result[3][3];
 
-    // Read the matrix dimensions
-    printf("Enter the number of rows and columns: ");
-    scanf("%d %d", &rows, &cols);
+    sum_and_sort_arrays(arr1, arr2, result, 3, 3);
 
-    // Read the two matrices
-    printf("Enter the elements for the first matrix:\n");
-    readMatrix(matrix1, rows, cols);
-
-    printf("Enter the elements for the second matrix:\n");
-    readMatrix(matrix2, rows, cols);
-
-    // Sort both matrices
-    sortMatrix(matrix1, rows, cols);
-    sortMatrix(matrix2, rows, cols);
-
-    // Sum the matrices
-    sumMatrices(matrix1, matrix2, result, rows, cols);
-
-    // Sort the result matrix
-    sortMatrix(result, rows, cols);
-
-    // Print the final sorted matrix
-    printf("The final sorted matrix after summing the matrices is:\n");
-    printMatrix(result, rows, cols);
+    printf("Sorted sum array:\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%d ", result[i][j]);
+        }
+        printf("\n");
+    }
 
     return 0;
 }
