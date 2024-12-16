@@ -1,95 +1,74 @@
 // WAP to take one 2-D array, find the transpose of  it, finally print the multiplied value of the matrix with its transpose.
-//Code14 is still showing Error
-//To be fixed
+
 #include <stdio.h>
-#include <stdlib.h>
 
-// Function to find the transpose of a matrix
-void transpose(int** matrix, int** transpose, int rows, int cols) {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            transpose[j][i] = matrix[i][j];
-        }
-    }
-}
-
-// Function to multiply two matrices
-void multiply(int** matrix, int** transpose, int** result, int rows, int cols) {
+void multiplyMatrices(int mat1[][10], int mat2[][10], int res[][10], int rows, int cols) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < rows; j++) {
-            result[i][j] = 0;
+            res[i][j] = 0;
             for (int k = 0; k < cols; k++) {
-                result[i][j] += matrix[i][k] * transpose[k][j];
+                res[i][j] += mat1[i][k] * mat2[j][k];
             }
         }
     }
 }
 
-// Function to display a matrix
-void displayMatrix(int** matrix, int rows, int cols) {
+void findTranspose(int mat[][10], int trans[][10], int rows, int cols) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            printf("%d ", matrix[i][j]);
+            trans[j][i] = mat[i][j];
         }
-        printf("\n");
     }
 }
 
 int main() {
     int rows, cols;
+    int mat[10][10], trans[10][10], result[10][10];
 
-    // Taking input for the matrix dimensions
-    printf("Enter the number of rows and columns of the matrix: ");
-    scanf("%d %d", &rows, &cols);
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
 
-    // Dynamically allocating memory for the matrix, its transpose, and the result
-    int** matrix = (int**)malloc(rows * sizeof(int*));
-    int** transpose = (int**)malloc(cols * sizeof(int*));  // Transpose has cols rows and rows cols
-    int** result = (int**)malloc(rows * sizeof(int*));
-
-    // Check if memory allocation was successful
-    if (matrix == NULL || transpose == NULL || result == NULL) {
-        printf("Memory allocation failed.\n");
-        return -1;  // Exit if memory allocation fails
-    }
-
-    for (int i = 0; i < rows; i++) {
-        matrix[i] = (int*)malloc(cols * sizeof(int));
-        result[i] = (int*)malloc(rows * sizeof(int));
-    }
-    for (int i = 0; i < cols; i++) {
-        transpose[i] = (int*)malloc(rows * sizeof(int));  // Transpose matrix has cols rows
-    }
-
-    // Taking input for the matrix
     printf("Enter the elements of the matrix:\n");
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            scanf("%d", &matrix[i][j]);
+            scanf("%d", &mat[i][j]);
         }
     }
 
-    // Finding the transpose of the matrix
-    transpose(matrix, transpose, rows, cols);
+    // Find the transpose
+    findTranspose(mat, trans, rows, cols);
 
-    // Multiplying the matrix with its transpose
-    multiply(matrix, transpose, result, rows, cols);
+    // Multiply the matrix with its transpose
+    multiplyMatrices(mat, trans, result, rows, cols);
 
-    // Displaying the result of the multiplication
-    printf("\nResult of multiplying the matrix with its transpose:\n");
-    displayMatrix(result, rows, rows);  // The result is always a square matrix of size rows x rows
-
-    // Freeing the dynamically allocated memory
+    // Print the original matrix
+    printf("\nOriginal Matrix:\n");
     for (int i = 0; i < rows; i++) {
-        free(matrix[i]);
-        free(result[i]);
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", mat[i][j]);
+        }
+        printf("\n");
     }
+
+    // Print the transpose of the matrix
+    printf("\nTranspose of the Matrix:\n");
     for (int i = 0; i < cols; i++) {
-        free(transpose[i]);
+        for (int j = 0; j < rows; j++) {
+            printf("%d ", trans[i][j]);
+        }
+        printf("\n");
     }
-    free(matrix);
-    free(transpose);
-    free(result);
+
+    // Print the result of the multiplication
+    printf("\nResult of Matrix multiplied by its Transpose:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < rows; j++) {
+            printf("%d ", result[i][j]);
+        }
+        printf("\n");
+    }
 
     return 0;
 }
