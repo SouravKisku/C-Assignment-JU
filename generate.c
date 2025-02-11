@@ -5,7 +5,7 @@ void generateFiles(int numberOfFiles) {
     char fileName[20];
     for (int i = 1; i <= numberOfFiles; i++) {
         // Generate the file name
-        sprintf(fileName, "code%d.c", i);
+        sprintf(fileName, "code%d.cpp", i);
 
         // Open the file for writing
         FILE *file = fopen(fileName, "w");
