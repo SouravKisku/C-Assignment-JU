@@ -49,7 +49,7 @@ public:
     }
 
     // Destructor
-    ~Derived() {
+    ~Derived() override {
         std::cout << "Derived Destructor" << std::endl;
     }
 
@@ -59,14 +59,16 @@ public:
 };
 
 int main() {
-    std::cout << "Parameterized Constructor Demo:" << std::endl;
-    Base b1(10);
-    Derived d1(20, 30);
-    std::cout << std::endl;
-
     std::cout << "Copy Constructor Demo:" << std::endl;
+    Base b1(10);  // We need this to create b2
+    Derived d1(20, 30);  // We need this to create d2
     Base b2 = b1;
     Derived d2 = d1;
+    std::cout << std::endl;
+
+    std::cout << "Parameterized Constructor Demo:" << std::endl;
+    Base b3(15);
+    Derived d3(25, 35);
     std::cout << std::endl;
 
     std::cout << "Virtual Destructor Demo:" << std::endl;
@@ -74,5 +76,6 @@ int main() {
     poly->display();
     delete poly;
 
-    return 0;
+    return 0;`
 }
+

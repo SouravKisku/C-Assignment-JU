@@ -29,8 +29,16 @@ private:
 };
 
 int main() {
-    LeapYearChecker year1(2024);
-    LeapYearChecker year2(2023);
+    int year1, year2;
+
+    std::cout << "Enter the first year: ";
+    std::cin >> year1;
+
+    std::cout << "Enter the second year: ";
+    std::cin >> year2;
+
+    LeapYearChecker checker1(year1);
+    LeapYearChecker checker2(year2);
 
     return 0;
 }

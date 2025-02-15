@@ -9,7 +9,11 @@ public:
 
 int main() {
     SquareCalculator calculator;
-    int num = 5;
+    int num;
+
+    std::cout << "Enter a number to calculate its square: ";
+    std::cin >> num;
+
     int sq = calculator.square(num);
     std::cout << "Square of " << num << " is " << sq << std::endl;
     return 0;

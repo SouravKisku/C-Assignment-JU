@@ -23,7 +23,15 @@ void swapNumbers(NumberSwapper& obj) {
 }
 
 int main() {
-    NumberSwapper swapper(5, 10);
+    int input1, input2;
+
+    std::cout << "Enter the first number: ";
+    std::cin >> input1;
+
+    std::cout << "Enter the second number: ";
+    std::cin >> input2;
+
+    NumberSwapper swapper(input1, input2);
 
     std::cout << "Before swapping: ";
     swapper.display();
