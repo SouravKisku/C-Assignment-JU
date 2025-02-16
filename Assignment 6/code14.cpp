@@ -59,7 +59,23 @@ public:
 };
 
 int main() {
-    Manager manager("Alice", 123, 456, 5);
+    std::string name;
+    int employeeID, studentID, managerLevel;
+
+    std::cout << "Enter Manager's name: ";
+    std::getline(std::cin, name);
+
+    std::cout << "Enter Employee ID: ";
+    std::cin >> employeeID;
+
+    std::cout << "Enter Student ID: ";
+    std::cin >> studentID;
+
+    std::cout << "Enter Manager Level: ";
+    std::cin >> managerLevel;
+
+    Manager manager(name, employeeID, studentID, managerLevel);
+    std::cout << "\nManager Information:\n";
     manager.displayInfo();
 
     return 0;

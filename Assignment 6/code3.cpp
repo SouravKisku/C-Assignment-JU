@@ -1,45 +1,34 @@
 #include <iostream>
+using namespace std;
 
-class Rectangle {
-private:
-    double length;
-    double breadth;
-
-public:
-    void getData() {
-        std::cout << "Enter length: ";
-        std::cin >> length;
-        std::cout << "Enter breadth: ";
-        std::cin >> breadth;
-    }
-
-    void displayData() const {
-        std::cout << "Length: " << length << ", Breadth: " << breadth << std::endl;
-    }
-
-    bool isEqual() const {
-        return length == breadth;
-    }
+struct Rectangle {
+    int length;
+    int breadth;
 };
 
 int main() {
-    const int numRectangles = 3; // You can change this
-    Rectangle rectangles[numRectangles];
-
-    // Input rectangle data
-    std::cout << "Enter rectangle data:\n";
-    for (int i = 0; i < numRectangles; ++i) {
-        std::cout << "Rectangle " << i + 1 << ":\n";
-        rectangles[i].getData();
+    Rectangle rects[5];
+    
+    // Taking input for 5 rectangles
+    cout << "Enter length and breadth of 5 rectangles:" << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << "Rectangle " << i + 1 << " (length breadth): ";
+        cin >> rects[i].length >> rects[i].breadth;
     }
-
-    // Display rectangles with equal length and breadth
-    std::cout << "\nRectangles with equal length and breadth:\n";
-    for (int i = 0; i < numRectangles; ++i) {
-        if (rectangles[i].isEqual()) {
-            rectangles[i].displayData();
+    
+    // Display rectangles that are squares
+    cout << "\nRectangles that are squares:" << endl;
+    bool found = false;
+    for (int i = 0; i < 5; i++) {
+        if (rects[i].length == rects[i].breadth) {
+            cout << "Rectangle " << i + 1 << " (" << rects[i].length << " x " << rects[i].breadth << ")" << endl;
+            found = true;
         }
     }
-
+    
+    if (!found) {
+        cout << "No rectangles are squares." << endl;
+    }
+    
     return 0;
 }

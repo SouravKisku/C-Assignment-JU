@@ -50,7 +50,7 @@ public:
 };
 
 int main() {
-    const int numStudents = 2; //You can change this
+    const int numStudents = 5; 
     Student students[numStudents];
 
     // Input student data

@@ -21,7 +21,13 @@ public:
 };
 
 int main() {
-    Circle myCircle(5.0);
-    myCircle.displayArea(); // Output: Area of the circle: 78.5397
+    double userRadius;
+
+    std::cout << "Enter the radius of the circle: ";
+    std::cin >> userRadius;
+
+    Circle myCircle(userRadius);
+    myCircle.displayArea();
+
     return 0;
 }

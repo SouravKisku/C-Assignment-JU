@@ -28,7 +28,18 @@ public:
 };
 
 int main() {
-    Outer outer(10, 5, 15);
-    outer.displayGreatest(); // Output: Greatest number: 15
+    int n1, n2, n3;
+    
+    std::cout << "Enter three numbers: " << std::endl;
+    std::cout << "Number 1: ";
+    std::cin >> n1;
+    std::cout << "Number 2: ";
+    std::cin >> n2;
+    std::cout << "Number 3: ";
+    std::cin >> n3;
+
+    Outer outer(n1, n2, n3);
+    outer.displayGreatest(); 
+
     return 0;
 }
